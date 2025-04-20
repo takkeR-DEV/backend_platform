@@ -6,12 +6,12 @@ import { pool } from './db/index.js';
 
 
 dotenv.config();
-app.use(cors());
 
 console.log('URL из .env:', process.env.DATABASE_URL);
 const app = express();
 const PORT = 3000;
 
+app.use(cors());
 app.use(express.json());
 app.use(postRoutes);
 

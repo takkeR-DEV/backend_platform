@@ -1,10 +1,12 @@
 import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 import postRoutes from './routes/post.routes.js';
 import { pool } from './db/index.js';
 
 
 dotenv.config();
+app.use(cors());
 
 console.log('URL из .env:', process.env.DATABASE_URL);
 const app = express();

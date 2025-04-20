@@ -20,6 +20,7 @@ export const createTodos = async (req, res) => {
     }
 };
 
+
 export const getAllTodos = async (req, res) => {
     try {
         const result = await pool.query('SELECT * FROM todos ORDER BY id DESC');
@@ -29,6 +30,7 @@ export const getAllTodos = async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch todos' });
     }
 };
+
 
 export const deleteTodoById = async (req, res) => {
     const { id } = req.params;

@@ -4,6 +4,8 @@ import cors from 'cors';
 import postRoutes from './routes/post.routes.js';
 import todoRoutes from './routes/todos.routes.js';
 import { pool } from './db/index.js';
+import swaggerUi from 'swagger-ui-express';
+import { swaggerSpec } from './swagger.js';
 
 
 dotenv.config();
@@ -14,6 +16,7 @@ const PORT = 3000;
 
 app.use(cors());
 app.use(express.json());
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(postRoutes);
 app.use(todoRoutes);
 

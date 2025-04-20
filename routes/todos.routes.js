@@ -4,6 +4,36 @@ import { body } from 'express-validator';
 
 const router = express.Router();
 
+/**
+ * @swagger
+ * /todos:
+ *   post:
+ *     summary: Создать новую задачу
+ *     tags:
+ *       - Todos
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               author:
+ *                 type: string
+ *               edit:
+ *                 type: boolean
+ *               completed:
+ *                 type: boolean
+ *               createdAt:
+ *                 type: string
+ *                 format: date-time
+ *     responses:
+ *       201:
+ *         description: Задача успешно создана
+ */
+
 router.post(
     '/todos',
     body('title')
@@ -30,7 +60,37 @@ router.post(
 
     createTodos
 );
+/**
+ * @swagger
+ * /todos:
+ *   get:
+ *     summary: Получить все задачи
+ *     tags:
+ *       - Todos
+ *     responses:
+ *       200:
+ *         description: Успешно
+ */
 router.get('/todos', getAllTodos);
+/**
+ * @swagger
+ * /todos/{id}:
+ *   delete:
+ *     summary: Удалить задачу по ID
+ *     tags:
+ *       - Todos
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Задача удалена
+ *       404:
+ *         description: Задача не найдена
+ */
 router.delete('/todos/:id', deleteTodoById);
 
 export default router;
